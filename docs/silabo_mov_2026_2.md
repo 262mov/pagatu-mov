@@ -149,4 +149,27 @@ La evaluación de los estudiantes se rige por el Reglamento de Estudios, disponi
 
 ## IX. Referencias
 
-- Cash App. (2025). SQLDelight documentation. https://sqldelight.github.io/sqldelight/`r`n- Google. (2025). Jetpack Compose documentation. Android Developers. https://developer.android.com/jetpack/compose`r`n- JetBrains. (2025a). Compose Multiplatform. https://www.jetbrains.com/compose-multiplatform/`r`n- JetBrains. (2025b). Kotlin Multiplatform documentation. https://kotlinlang.org/docs/multiplatform.html`r`n- JetBrains. (2025c). Ktor documentation. https://ktor.io/docs/`r`n- Moskała, M. (2022). Kotlin coroutines: Deep dive. Kt. Academy.`r`n- Touchlab. (2025). Kotlin Multiplatform resources. https://touchlab.co/
+### Básica (Fuentes primarias)
+
+- Hogan, J. (2024). *Mastering Kotlin Multiplatform: Build Cross-Platform Apps for Android, iOS, Web, and Desktop*. Independently Published. ISBN 979-8-3461-9721-8.
+- Cash App. (2025). SQLDelight documentation. <https://sqldelight.github.io/sqldelight/>
+- Google. (2025). Jetpack Compose documentation. Android Developers. <https://developer.android.com/jetpack/compose>
+- JetBrains. (2025a). Compose Multiplatform. <https://www.jetbrains.com/compose-multiplatform/>
+- JetBrains. (2025b). Kotlin Multiplatform documentation. <https://kotlinlang.org/docs/multiplatform.html>
+- JetBrains. (2025c). Ktor documentation. <https://ktor.io/docs/>
+- Moskała, M. (2022). *Kotlin coroutines: Deep dive*. Kt. Academy.
+- Touchlab. (2025). Kotlin Multiplatform resources. <https://touchlab.co/>
+- Álvarez Caules, C. (2024). *Arquitectura Java sólida y patrones*. Arquitectura Java. [PDF](https://www.arquitecturajava.com/wp-content/uploads/LibroArquitecturaJavaSolidayPatronesV2.pdf).
+
+### Complementaria (Fuentes secundarias)
+
+- Sthepen S., Bucutiu S. 2020. *Kotlin Progammi*. 2da Ed. Packt.
+- Tirado, B. 2020. *El gran libro de Android* (7ma edición). 8ª Ed. Ra-ma.
+- Tomás, J. 2019. *Desarrollo de aplicaciones con Android*. 8ª Ed. Alfaomega, Marcombo.
+- Tyagi A. 2022. *Pragmatic Flutter: Building Cross-Platform Mobile Apps for Android, iOS, Web, & Desktop*. CRC Press.
+- Zaccagnino C. 2020. *Flutter*. Editore Ulrico Hoepli Milano.
+
+### Enlaces de internet
+
+- <https://bsoftgroup.com/educate/>
+- <https://codearti.com/>
