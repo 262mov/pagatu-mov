@@ -1,5 +1,7 @@
-site_name: Pagatu MOV - Desarrollo de Aplicaciones Móviles
+site_name: Desarrollo de Aplicaciones Móviles
 site_url: https://262mov.github.io/pagatu-mov/
+repo_url: https://github.com/262mov/pagatu-mov
+repo_name: 262mov/pagatu-mov
 docs_dir: docs
 
 nav:
@@ -9,6 +11,8 @@ nav:
   - Silabos:
       - Silabo 2026-1: silabo_mov_2026_1.md
       - Silabo 2026-2: silabo_mov_2026_2.md
+  - 1. Fundamentos de Kotlin Multiplatform y UI con Compose Multiplatform:
+      - "S1 - Fundamentos de Kotlin Multiplatform: Arquitectura, Entorno y Proyecto Base": sesiones/S01_Fundamentos_KMP_Compose.md
 
 theme:
   name: material
