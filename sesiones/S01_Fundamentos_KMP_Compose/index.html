@@ -1,0 +1,2117 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://262mov.github.io/pagatu-mov/sesiones/S01_Fundamentos_KMP_Compose/">
+      
+      
+        <link rel="prev" href="../../silabo_mov_2026_2/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>S1 - Fundamentos de Kotlin Multiplatform: Arquitectura, Entorno y Proyecto Base - Desarrollo de Aplicaciones Móviles</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#s1-fundamentos-de-kotlin-multiplatform-arquitectura-entorno-y-proyecto-base" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Desarrollo de Aplicaciones Móviles" class="md-header__button md-logo" aria-label="Desarrollo de Aplicaciones Móviles" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Desarrollo de Aplicaciones Móviles
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              S1 - Fundamentos de Kotlin Multiplatform: Arquitectura, Entorno y Proyecto Base
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/262mov/pagatu-mov" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    262mov/pagatu-mov
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Desarrollo de Aplicaciones Móviles" class="md-nav__button md-logo" aria-label="Desarrollo de Aplicaciones Móviles" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Desarrollo de Aplicaciones Móviles
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/262mov/pagatu-mov" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    262mov/pagatu-mov
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de Proyecto Sello
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guía de Proyecto Sello
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../proyecto-sello/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía del proyecto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Silabos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Silabos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../silabo_mov_2026_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Silabo 2026-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../silabo_mov_2026_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Silabo 2026-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Fundamentos de Kotlin Multiplatform y UI con Compose Multiplatform
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Fundamentos de Kotlin Multiplatform y UI con Compose Multiplatform
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 - Fundamentos de Kotlin Multiplatform: Arquitectura, Entorno y Proyecto Base
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 - Fundamentos de Kotlin Multiplatform: Arquitectura, Entorno y Proyecto Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Contexto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Índice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-proposito-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Propósito de aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-producto-de-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Producto de sesión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-metodologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Metodología
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-motivacion-de-la-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 Motivación de la sesión
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.6 Motivación de la sesión">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#161-caso-la-logica-que-no-deberia-escribirse-dos-veces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6.1 Caso: la lógica que no debería escribirse dos veces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-ubicacion-en-el-curso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 Ubicación en el curso
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-explica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Explica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Explica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-desarrollo-movil-multiplataforma-el-problema-que-resuelve-kmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Desarrollo móvil multiplataforma: el problema que resuelve KMP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-arquitectura-de-un-proyecto-kotlin-multiplatform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Arquitectura de un proyecto Kotlin Multiplatform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-compose-multiplatform-que-es-y-que-relacion-tiene-con-jetpack-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Compose Multiplatform: qué es y qué relación tiene con Jetpack Compose
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-entorno-de-desarrollo-android-studio-plugin-de-kotlin-multiplatform-y-xcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Entorno de desarrollo: Android Studio, plugin de Kotlin Multiplatform y Xcode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-el-wizard-oficial-de-creacion-de-proyectos-y-su-estructura-resultante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 El wizard oficial de creación de proyectos y su estructura resultante
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-git-y-control-de-versiones-para-el-proyecto-kmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Git y control de versiones para el proyecto KMP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-aplica-actividad-practica-guiada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Aplica: actividad práctica guiada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Aplica: actividad práctica guiada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-instalar-y-verificar-android-studio-y-el-plugin-de-kotlin-multiplatform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Instalar y verificar Android Studio y el plugin de Kotlin Multiplatform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-macos-instalar-y-preparar-xcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 (macOS) Instalar y preparar Xcode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-crear-el-proyecto-kmp-base-con-el-asistente-oficial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Crear el proyecto KMP base con el asistente oficial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-reconocer-la-estructura-del-proyecto-generado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Reconocer la estructura del proyecto generado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-ejecutar-el-proyecto-en-un-emulador-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Ejecutar el proyecto en un emulador Android
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-macos-ejecutar-el-proyecto-en-el-simulador-de-ios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 (macOS) Ejecutar el proyecto en el simulador de iOS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-configurar-git-y-el-primer-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Configurar Git y el primer commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-publicar-el-repositorio-en-github-con-los-topics-academicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 Publicar el repositorio en GitHub con los topics académicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-crea-actividad-autonoma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Crea: actividad autónoma
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Crea: actividad autónoma">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-plantilla-de-evidencia-individual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Plantilla de evidencia individual
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 Plantilla de evidencia individual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#411-datos-del-estudiante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.1 Datos del estudiante
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412-trabajo-autonomo-realizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.2 Trabajo autónomo realizado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#413-evidencia-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.3 Evidencia técnica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#414-error-o-hallazgo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.4 Error o hallazgo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#415-reflexion-tecnica-breve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.5 Reflexión técnica breve
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-criterios-minimos-de-aceptacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Criterios mínimos de aceptación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cierre-evaluativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cierre evaluativo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Cierre evaluativo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-resultados-esperados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Resultados esperados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-evidencia-del-producto-de-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Evidencia del producto de sesión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-preguntas-de-defensa-y-reflexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Preguntas de defensa y reflexión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-rubrica-de-evaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Rúbrica de evaluación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Contexto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Índice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-proposito-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Propósito de aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-producto-de-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Producto de sesión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-metodologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Metodología
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-motivacion-de-la-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 Motivación de la sesión
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.6 Motivación de la sesión">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#161-caso-la-logica-que-no-deberia-escribirse-dos-veces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6.1 Caso: la lógica que no debería escribirse dos veces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-ubicacion-en-el-curso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 Ubicación en el curso
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-explica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Explica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Explica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-desarrollo-movil-multiplataforma-el-problema-que-resuelve-kmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Desarrollo móvil multiplataforma: el problema que resuelve KMP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-arquitectura-de-un-proyecto-kotlin-multiplatform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Arquitectura de un proyecto Kotlin Multiplatform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-compose-multiplatform-que-es-y-que-relacion-tiene-con-jetpack-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Compose Multiplatform: qué es y qué relación tiene con Jetpack Compose
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-entorno-de-desarrollo-android-studio-plugin-de-kotlin-multiplatform-y-xcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Entorno de desarrollo: Android Studio, plugin de Kotlin Multiplatform y Xcode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-el-wizard-oficial-de-creacion-de-proyectos-y-su-estructura-resultante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 El wizard oficial de creación de proyectos y su estructura resultante
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-git-y-control-de-versiones-para-el-proyecto-kmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Git y control de versiones para el proyecto KMP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-aplica-actividad-practica-guiada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Aplica: actividad práctica guiada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Aplica: actividad práctica guiada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-instalar-y-verificar-android-studio-y-el-plugin-de-kotlin-multiplatform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Instalar y verificar Android Studio y el plugin de Kotlin Multiplatform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-macos-instalar-y-preparar-xcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 (macOS) Instalar y preparar Xcode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-crear-el-proyecto-kmp-base-con-el-asistente-oficial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Crear el proyecto KMP base con el asistente oficial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-reconocer-la-estructura-del-proyecto-generado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Reconocer la estructura del proyecto generado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-ejecutar-el-proyecto-en-un-emulador-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Ejecutar el proyecto en un emulador Android
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-macos-ejecutar-el-proyecto-en-el-simulador-de-ios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 (macOS) Ejecutar el proyecto en el simulador de iOS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-configurar-git-y-el-primer-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Configurar Git y el primer commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-publicar-el-repositorio-en-github-con-los-topics-academicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 Publicar el repositorio en GitHub con los topics académicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-crea-actividad-autonoma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Crea: actividad autónoma
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Crea: actividad autónoma">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-plantilla-de-evidencia-individual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Plantilla de evidencia individual
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 Plantilla de evidencia individual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#411-datos-del-estudiante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.1 Datos del estudiante
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412-trabajo-autonomo-realizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.2 Trabajo autónomo realizado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#413-evidencia-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.3 Evidencia técnica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#414-error-o-hallazgo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.4 Error o hallazgo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#415-reflexion-tecnica-breve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.5 Reflexión técnica breve
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-criterios-minimos-de-aceptacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Criterios mínimos de aceptación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cierre-evaluativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cierre evaluativo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Cierre evaluativo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-resultados-esperados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Resultados esperados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-evidencia-del-producto-de-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Evidencia del producto de sesión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-preguntas-de-defensa-y-reflexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Preguntas de defensa y reflexión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-rubrica-de-evaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Rúbrica de evaluación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="s1-fundamentos-de-kotlin-multiplatform-arquitectura-entorno-y-proyecto-base">S1 - Fundamentos de Kotlin Multiplatform: Arquitectura, Entorno y Proyecto Base</h1>
+<h2 id="1-introduccion">1. Introducción</h2>
+<p>Tiempo: 20 min.</p>
+<h3 id="11-contexto">1.1 Contexto</h3>
+<p>Antes de escribir la primera pantalla de una aplicación móvil multiplataforma hay que resolver una pregunta previa: ¿cómo se comparte código entre Android e iOS sin duplicar la lógica de negocio en dos lenguajes distintos? Kotlin Multiplatform (KMP) responde esa pregunta compilando el mismo código Kotlin hacia binarios nativos para cada plataforma. Esta sesión no escribe todavía ninguna pantalla: instala y verifica el entorno (Android Studio, el plugin de Kotlin Multiplatform y, si corresponde, Xcode), crea el proyecto KMP base mediante el asistente oficial y lo versiona en Git. Es el punto de partida de todo lo que el equipo construirá durante el semestre.</p>
+<h3 id="12-indice">1.2 Índice</h3>
+<ol>
+<li>Desarrollo móvil multiplataforma: el problema que resuelve KMP.</li>
+<li>Arquitectura de un proyecto Kotlin Multiplatform.</li>
+<li>Compose Multiplatform: qué es y qué relación tiene con Jetpack Compose.</li>
+<li>Entorno de desarrollo: Android Studio, plugin de Kotlin Multiplatform y Xcode.</li>
+<li>El wizard oficial de creación de proyectos y su estructura resultante.</li>
+<li>Git y control de versiones para el proyecto KMP.</li>
+</ol>
+<h3 id="13-proposito-de-aprendizaje">1.3 Propósito de aprendizaje</h3>
+<p>Al concluir la clase, estarás en condiciones de:</p>
+<ul>
+<li><strong>Configurar</strong> un entorno de desarrollo multiplataforma (Android Studio con el plugin de Kotlin Multiplatform y, en macOS, Xcode) y <strong>crear</strong> un proyecto KMP base mediante el asistente oficial, reconociendo su arquitectura (<code>commonMain</code>/<code>androidMain</code>/<code>iosMain</code>) y dejándolo ejecutable en un emulador Android y versionado en Git.</li>
+</ul>
+<h3 id="14-producto-de-sesion">1.4 Producto de sesión</h3>
+<p>Proyecto KMP base creado con el asistente oficial de Kotlin Multiplatform, ejecutándose sin errores en un emulador Android (y en el simulador de iOS si el estudiante dispone de una Mac), con su estructura de módulos y carpetas (<code>commonMain</code>, <code>androidMain</code>, <code>iosMain</code>) identificada y documentada, versionado en un repositorio Git con el primer commit y publicado en GitHub con los topics académicos del curso.</p>
+<h3 id="15-metodologia">1.5 Metodología</h3>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Actividades</th>
+<th>Orientaciones</th>
+<th>Material</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Revisión previa individual</td>
+<td>Descargar Android Studio (instalador pesado, conviene iniciarlo antes de clase) y leer las secciones 1 y 2 de esta guía.</td>
+<td>Trabajo individual, antes de clase; no se requiere tener el entorno funcionando todavía, solo la descarga iniciada.</td>
+<td>Enlace oficial de descarga de Android Studio, esta guía.</td>
+</tr>
+<tr>
+<td>Clase presencial</td>
+<td>Instalación guiada del plugin de Kotlin Multiplatform, explicación de la arquitectura KMP y creación del proyecto base con el asistente oficial; primera ejecución en el emulador Android.</td>
+<td>Trabajo individual en la propia laptop, siguiendo al docente paso a paso; consulta inmediata ante errores de instalación, SDK o emulador.</td>
+<td>Android Studio con el plugin de Kotlin Multiplatform instalado, asistente de <code>kmp.jetbrains.com</code> o el wizard integrado, emulador Android configurado.</td>
+</tr>
+<tr>
+<td>Evaluación formativa</td>
+<td>Verificación en clase de la ejecución del proyecto y del primer commit en Git; inicio de la plantilla de evidencia individual.</td>
+<td>La evidencia se completa y sustenta de forma individual, fuera del aula, según los criterios mínimos de la sección 4.2.</td>
+<td>Plantilla de evidencia individual (4.1), rúbrica de evaluación (5.4).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="16-motivacion-de-la-sesion">1.6 Motivación de la sesión</h3>
+<h4 id="161-caso-la-logica-que-no-deberia-escribirse-dos-veces">1.6.1 Caso: la lógica que no debería escribirse dos veces</h4>
+<p>Un equipo construye "PagaTú", una app de pagos entre amigos. En la primera versión solo apuntan a Android: escriben en Kotlin las pantallas, la validación de montos, el cálculo de comisiones y la conexión con el backend. Dos meses después, el docente les pregunta: "¿y los usuarios con iPhone?". La mitad del equipo tiene que empezar de nuevo, esta vez en Swift, reescribiendo la misma validación de montos, el mismo cálculo de comisiones y la misma lógica de conexión — con el riesgo de que un ajuste futuro en las reglas de negocio se corrija en un lado y se olvide en el otro.</p>
+<pre><code class="language-text">¿Qué hubiera cambiado si el equipo decide, antes de escribir la primera
+pantalla, que Android e iOS comparten la misma lógica de negocio en Kotlin?
+</code></pre>
+<p>Preguntas para los estudiantes:</p>
+<ol>
+<li>¿Qué se duplicaría exactamente si el equipo construye la lógica de negocio dos veces (una en Kotlin para Android y otra en Swift para iOS)?</li>
+<li>¿Qué parte del proyecto sigue siendo distinta entre Android e iOS aunque se use Kotlin Multiplatform?</li>
+<li>¿Por qué conviene decidir la arquitectura multiplataforma antes de escribir la primera pantalla, y no después de tener ya una app nativa funcionando?</li>
+</ol>
+<h3 id="17-ubicacion-en-el-curso">1.7 Ubicación en el curso</h3>
+<ul>
+<li>Unidad: U1 - Fundamentos de Kotlin Multiplatform y UI con Compose Multiplatform.</li>
+<li>Producto de unidad: Aplicación KMP ejecutándose en Android e iOS con navegación completa, theming Material 3 y arquitectura Clean + MVVM con datos simulados.</li>
+<li>Producto del curso: Proyecto Sello — aplicación móvil multiplataforma completa, con arquitectura Clean + MVVM, CRUD REST, autenticación JWT, persistencia local offline-first, builds firmados para Android e iOS y sustentación técnica en ambas plataformas.</li>
+<li>Avance del producto en esta sesión: entorno multiplataforma configurado y proyecto KMP base creado, ejecutable y versionado en Git. Todavía no hay dominio modelado, UI propia, navegación ni arquitectura Clean + MVVM — eso empieza en S2 y se construye progresivamente hasta el cierre de la unidad en S6.</li>
+</ul>
+<p>Roadmap del producto de la unidad:</p>
+<pre><code class="language-mermaid">flowchart TB
+    S1[&quot;S1&lt;br/&gt;Entorno, proyecto&lt;br/&gt;KMP base y Git&quot;]
+    S2[&quot;S2&lt;br/&gt;Kotlin esencial y&lt;br/&gt;dominio en commonMain&quot;]
+    S3[&quot;S3&lt;br/&gt;Compose Multiplatform:&lt;br/&gt;pantallas y formularios&quot;]
+    S4[&quot;S4&lt;br/&gt;Navegación y&lt;br/&gt;theming Material 3&quot;]
+    S5[&quot;S5&lt;br/&gt;Arquitectura Clean+MVVM&lt;br/&gt;y Koin&quot;]
+    S6[&quot;S6&lt;br/&gt;Evaluación 1&lt;br/&gt;Producto U1&quot;]
+
+    S1 --&gt; S2 --&gt; S3 --&gt; S4 --&gt; S5 --&gt; S6
+
+    classDef today fill:#ffe08a,stroke:#9a6b00,stroke-width:2px,color:#111;
+    class S1 today;
+</code></pre>
+<h2 id="2-explica">2. Explica</h2>
+<p>Tiempo: 25 min.</p>
+<h3 id="21-desarrollo-movil-multiplataforma-el-problema-que-resuelve-kmp">2.1 Desarrollo móvil multiplataforma: el problema que resuelve KMP</h3>
+<p>Construir una app "nativa" para Android e iOS de la forma tradicional significa mantener dos proyectos separados: uno en Kotlin/Java sobre Android SDK, otro en Swift sobre UIKit/SwiftUI. Ambos comparten el mismo dominio de negocio (las mismas entidades, las mismas reglas de validación, la misma forma de hablar con el backend), pero ese dominio se escribe, se prueba y se corrige dos veces, en dos lenguajes, por lo general en dos equipos que se desincronizan con el tiempo (ver caso de 1.6.1).</p>
+<p><strong>Kotlin Multiplatform (KMP)</strong>, desarrollado por JetBrains, resuelve esto permitiendo escribir una sola vez el código compartido (modelos de dominio, lógica de negocio, cliente HTTP, persistencia) y compilarlo de forma nativa para cada plataforma: hacia bytecode JVM/Android en el caso de Android, y hacia un framework binario mediante Kotlin/Native en el caso de iOS, consumible directamente desde un proyecto Xcode.</p>
+<p>KMP no obliga a compartir también la interfaz de usuario: un equipo puede compartir solo la lógica y mantener la UI 100% nativa por plataforma (Jetpack Compose en Android, SwiftUI en iOS), o compartir además la UI con <strong>Compose Multiplatform</strong> (ver 2.3). El sílabo del curso y el Proyecto Sello de MOV optan por la segunda opción: dominio, lógica de negocio y UI compartidos, ejecutándose en Android e iOS desde una única base de código en <code>commonMain</code>.</p>
+<p>Esto distingue a KMP de frameworks que abstraen la UI por completo sin exponer las APIs nativas subyacentes (Flutter, React Native): en KMP, cuando una funcionalidad exige código específico de plataforma (una API del sistema, un SDK nativo), el proyecto lo resuelve dentro del propio módulo compartido mediante el mecanismo <code>expect</code>/<code>actual</code> — mecanismo que el sílabo formaliza recién en la Unidad 2 (S9), no en esta sesión.</p>
+<h3 id="22-arquitectura-de-un-proyecto-kotlin-multiplatform">2.2 Arquitectura de un proyecto Kotlin Multiplatform</h3>
+<p>Un proyecto KMP organiza el código en <strong>conjuntos de fuentes</strong> (<em>source sets</em>) según cuánto código comparten:</p>
+<pre><code class="language-mermaid">flowchart TB
+    subgraph COMMON[&quot;commonMain — código compartido&quot;]
+        DOM[&quot;Modelo de dominio *&quot;]
+        LOGIC[&quot;Lógica de negocio y casos de uso *&quot;]
+        UI[&quot;UI declarativa con Compose Multiplatform **&quot;]
+    end
+    subgraph AND[&quot;androidMain&quot;]
+        ANDROID[&quot;Implementaciones específicas de Android&lt;br/&gt;(expect/actual) y punto de entrada Android&quot;]
+    end
+    subgraph IOS[&quot;iosMain&quot;]
+        IOSIMPL[&quot;Implementaciones específicas de iOS&lt;br/&gt;(expect/actual) y framework consumido por Xcode&quot;]
+    end
+
+    COMMON --&gt; AND --&gt; APK[&quot;APK / AAB&quot;]
+    COMMON --&gt; IOS --&gt; IPA[&quot;App iOS / IPA&quot;]
+</code></pre>
+<p><small><em>El modelo de dominio y la lógica de negocio en <code>commonMain</code> se construyen recién en S2 (Kotlin esencial, colecciones, corrutinas, Flow). </em>*La UI con Compose Multiplatform se practica recién en S3. En S1, <code>commonMain</code> existe pero solo contiene el código de plantilla que genera el asistente.</small></p>
+<ul>
+<li><strong><code>commonMain</code></strong>: el código que no depende de ninguna plataforma — modelos, reglas de negocio, y, en este curso, también la UI con Compose Multiplatform. Es el conjunto de fuentes que crece más durante el semestre.</li>
+<li><strong><code>androidMain</code></strong> / <strong><code>iosMain</code></strong>: código específico de cada plataforma — por ejemplo, el punto de entrada de la app (<code>MainActivity</code> en Android, <code>App.swift</code>/<code>ContentView.swift</code> en iOS) y las implementaciones concretas de las capacidades que <code>commonMain</code> declara mediante <code>expect</code> (fecha/hora del sistema, almacenamiento seguro, cámara, etc. — se trabajan a partir de S9).</li>
+<li>El compilador de Kotlin genera, a partir de <code>commonMain</code> + <code>androidMain</code>, un artefacto Android normal (APK/AAB); y a partir de <code>commonMain</code> + <code>iosMain</code>, mediante Kotlin/Native, un framework binario que el proyecto Xcode importa como si fuera una librería nativa más.</li>
+</ul>
+<p><strong>Error frecuente</strong>: escribir código específico de una plataforma directamente en <code>commonMain</code> (por ejemplo, una llamada a una API exclusiva de Android). El compilador de <code>commonMain</code> no tiene acceso a APIs de plataforma — ese código pertenece a <code>androidMain</code> o <code>iosMain</code>, o debe expresarse mediante <code>expect</code>/<code>actual</code>.</p>
+<h3 id="23-compose-multiplatform-que-es-y-que-relacion-tiene-con-jetpack-compose">2.3 Compose Multiplatform: qué es y qué relación tiene con Jetpack Compose</h3>
+<p><strong>Jetpack Compose</strong> es el framework declarativo de UI de Google para Android: en vez de manipular vistas imperativamente, se describe la UI como una función del estado (<code>@Composable</code>) y el framework decide qué redibujar cuando ese estado cambia.</p>
+<p><strong>Compose Multiplatform</strong>, desarrollado por JetBrains sobre el mismo runtime y compilador de Jetpack Compose, extiende ese mismo modelo declarativo más allá de Android: los mismos <code>@Composable</code> escritos en <code>commonMain</code> se renderizan de forma nativa en iOS (sobre Skia), en desktop y en la web, sin reescribir la UI por plataforma. JetBrains declaró Compose Multiplatform para iOS estable a mediados de 2024; se mantiene en desarrollo activo, por lo que conviene revisar la documentación oficial (<code>jetbrains.com/compose-multiplatform</code>) antes de fijar una versión exacta para el proyecto de equipo.</p>
+<p>En S1 el asistente de creación de proyecto ya deja Compose Multiplatform configurado como dependencia, pero <strong>no se escribe ninguna pantalla propia todavía</strong> — eso ocurre desde S3 (composables, estado, modifiers, layouts, formularios).</p>
+<h3 id="24-entorno-de-desarrollo-android-studio-plugin-de-kotlin-multiplatform-y-xcode">2.4 Entorno de desarrollo: Android Studio, plugin de Kotlin Multiplatform y Xcode</h3>
+<p>Desarrollar con KMP en este curso requiere, como mínimo:</p>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Para qué sirve</th>
+<th>Obligatorio para</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android Studio (la versión estable más reciente disponible al momento de instalar)</td>
+<td>IDE base: editor, SDK Manager, emulador Android, integración con Gradle.</td>
+<td>Android e iOS (el proyecto se edita y compila desde aquí incluso si el target final es iOS).</td>
+</tr>
+<tr>
+<td>Plugin <strong>Kotlin Multiplatform</strong> (JetBrains Marketplace)</td>
+<td>Agrega el asistente de creación de proyectos KMP, resaltado de <code>expect</code>/<code>actual</code> y utilidades de sincronización con Xcode.</td>
+<td>Android e iOS.</td>
+</tr>
+<tr>
+<td>Plugin de Kotlin embebido, actualizado a su versión más reciente</td>
+<td>Evita incompatibilidades entre el compilador de Kotlin y las librerías de Compose Multiplatform.</td>
+<td>Android e iOS.</td>
+</tr>
+<tr>
+<td>Xcode (App Store, solo en macOS)</td>
+<td>Compilar y ejecutar la app en el simulador/dispositivo iOS; el framework generado por Kotlin/Native se enlaza aquí.</td>
+<td>Solo iOS.</td>
+</tr>
+</tbody>
+</table>
+<p>Notas importantes:</p>
+<ul>
+<li><strong>Solo se puede compilar y ejecutar el target iOS desde una Mac con Xcode instalado.</strong> No existe forma de emular el simulador de iOS desde Windows o Linux — es una restricción de Apple, no del proyecto ni de Kotlin Multiplatform.</li>
+<li>Quien no tenga acceso a una Mac puede desarrollar y verificar todo el target Android durante el semestre, y debe declararlo como limitación real en la plantilla de evidencia (ver 4.1.4) — el sílabo recién exige dispositivos reales y builds firmados en ambas plataformas en la Unidad 3.</li>
+<li>Antes de usar Xcode por primera vez hay que abrirlo manualmente al menos una vez para aceptar su licencia y dejar que instale componentes adicionales; si no se hace, la compilación del target iOS falla con errores de herramientas faltantes que no tienen relación con el código Kotlin.</li>
+</ul>
+<h3 id="25-el-wizard-oficial-de-creacion-de-proyectos-y-su-estructura-resultante">2.5 El wizard oficial de creación de proyectos y su estructura resultante</h3>
+<p>JetBrains mantiene dos formas equivalentes de generar un proyecto KMP nuevo, ambas con el mismo resultado:</p>
+<ol>
+<li>El asistente web <strong><code>kmp.jetbrains.com</code></strong>, que genera un <code>.zip</code> descargable.</li>
+<li>El asistente integrado en Android Studio (<strong>File → New → New Project → Kotlin Multiplatform</strong>), una vez instalado el plugin de 2.4.</li>
+</ol>
+<p>Ambos asistentes preguntan lo mismo: nombre del proyecto, identificador de paquete (<code>groupId</code>, estilo <code>pe.edu.upeu.&lt;proyecto&gt;</code>), qué plataformas incluir (Android, iOS, y opcionalmente Desktop/Web/Server) y si la UI se comparte con Compose Multiplatform o se mantiene nativa por plataforma. Para este curso, la UI <strong>sí se comparte</strong> (Compose Multiplatform).</p>
+<p>JetBrains actualizó en 2026 la estructura de proyecto que generan ambos asistentes: en vez de un único módulo <code>composeApp</code> que mezclaba configuración de empaquetado de todas las plataformas, cada plataforma recibe su propio módulo de aplicación con una responsabilidad clara, mientras el código compartido queda en un módulo de librería aparte. En términos generales, lo que verás al abrir el proyecto generado es:</p>
+<pre><code class="language-text">&lt;nombre-del-proyecto&gt;/
+├── shared/ (o composeApp/, según la versión del asistente)
+│   └── src/
+│       ├── commonMain/     # dominio, lógica de negocio y UI Compose compartida
+│       ├── androidMain/    # implementaciones expect/actual de Android
+│       └── iosMain/        # implementaciones expect/actual de iOS
+├── androidApp/             # módulo de aplicación Android (punto de entrada)
+├── iosApp/                 # proyecto Xcode que consume el framework compartido
+├── gradle/                 # Gradle Wrapper
+└── settings.gradle.kts
+</code></pre>
+<p>El nombre exacto del módulo de código compartido (<code>shared</code> o <code>composeApp</code>) puede variar según la versión del asistente que uses — no memorices un nombre fijo: identifica el módulo por lo que contiene (los <code>commonMain</code>/<code>androidMain</code>/<code>iosMain</code> de 2.2), no por su nombre de carpeta.</p>
+<h3 id="26-git-y-control-de-versiones-para-el-proyecto-kmp">2.6 Git y control de versiones para el proyecto KMP</h3>
+<p>El proyecto se versiona en Git desde el primer commit, igual que en el resto de sesiones del curso. Dos particularidades de un proyecto KMP frente a un proyecto de un solo lenguaje:</p>
+<ul>
+<li>El <code>.gitignore</code> debe excluir artefactos de <strong>dos toolchains distintas</strong>: los de Gradle/Android Studio (<code>/build/</code>, <code>.gradle/</code>, <code>local.properties</code>, <code>.idea/</code> salvo lo compartido por el equipo) y, si el equipo trabaja también en Xcode, los propios de Xcode (<code>DerivedData/</code>, <code>xcuserdata/</code>, <code>*.xcworkspace/xcuserdata/</code>).</li>
+<li><code>local.properties</code> (que guarda la ruta local del SDK de Android en cada máquina) <strong>nunca se versiona</strong> — es distinto en la laptop de cada integrante del equipo.</li>
+</ul>
+<p>El repositorio del proyecto del curso se crea siguiendo el mismo estándar de topics académicos que usa el Proyecto Sello del curso (<code>campus-*</code>, <code>semestre-2026-2</code>, <code>linea-software</code>, <code>tipo-ps</code>, <code>mov</code>, <code>seccion-*</code>, <code>grupo-*</code>) — ver <a href="../../proyecto-sello/#repositorio-académico-y-topics">Guía del Proyecto Sello</a> para el detalle completo del estándar.</p>
+<h2 id="3-aplica-actividad-practica-guiada">3. Aplica: actividad práctica guiada</h2>
+<p>Tiempo: 2h.</p>
+<p>Hoja de ruta de la sesión práctica:</p>
+<ul>
+<li><strong>3.1</strong> Instalar y verificar Android Studio y el plugin de Kotlin Multiplatform.</li>
+<li><strong>3.2</strong> (macOS) Instalar y preparar Xcode.</li>
+<li><strong>3.3</strong> Crear el proyecto KMP base con el asistente oficial.</li>
+<li><strong>3.4</strong> Reconocer la estructura del proyecto generado.</li>
+<li><strong>3.5</strong> Ejecutar el proyecto en un emulador Android.</li>
+<li><strong>3.6</strong> (macOS) Ejecutar el proyecto en el simulador de iOS.</li>
+<li><strong>3.7</strong> Configurar Git y el primer commit.</li>
+<li><strong>3.8</strong> Publicar el repositorio en GitHub con los topics académicos.</li>
+</ul>
+<pre><code class="language-text">En S1 solo se instala el entorno, se crea el proyecto KMP base con el
+asistente oficial y se deja versionado en Git. No se escribe UI propia,
+no se modela el dominio y no se aplica arquitectura Clean+MVVM todavía
+— eso se construye progresivamente entre S2 y S5.
+</code></pre>
+<h3 id="31-instalar-y-verificar-android-studio-y-el-plugin-de-kotlin-multiplatform">3.1 Instalar y verificar Android Studio y el plugin de Kotlin Multiplatform</h3>
+<p><strong>Producto del paso:</strong> entorno de desarrollo con Android Studio y el plugin de Kotlin Multiplatform instalados y verificados.</p>
+<ol>
+<li>Descarga e instala la versión estable más reciente de Android Studio desde el sitio oficial (<code>developer.android.com/studio</code>). No uses versiones <em>Canary</em>/<em>Beta</em> para el proyecto del curso — solo el canal estable.</li>
+<li>Abre Android Studio → <strong>Settings/Preferences</strong> (Windows/Linux: <code>Ctrl+Alt+S</code>; macOS: <code>Cmd+,</code>) → <strong>Plugins</strong> → pestaña <strong>Marketplace</strong>.</li>
+<li>Busca <strong>"Kotlin Multiplatform"</strong> (publicado por JetBrains) e instálalo.</li>
+<li>Reinicia Android Studio cuando lo pida.</li>
+<li>En la misma pantalla de Plugins, ubica <strong>Kotlin</strong> (viene incluido) y actualízalo a su versión más reciente si el IDE ofrece una actualización — evita incompatibilidades entre el compilador y las librerías de Compose Multiplatform.</li>
+<li>Abre el <strong>SDK Manager</strong> (<code>Settings → Languages &amp; Frameworks → Android SDK</code>) y confirma que tienes instalada al menos una versión reciente de la <strong>Android SDK Platform</strong> y el <strong>Android Emulator</strong>.</li>
+</ol>
+<p>Verificación esperada:</p>
+<pre><code class="language-text">Settings &gt; Plugins &gt; Installed
+✓ Kotlin Multiplatform (JetBrains)
+✓ Kotlin — actualizado a la versión más reciente ofrecida por el IDE
+
+Settings &gt; Languages &amp; Frameworks &gt; Android SDK
+✓ Al menos una Android SDK Platform instalada
+✓ Android Emulator instalado
+</code></pre>
+<p>Si el menú <strong>File → New → New Project</strong> no muestra la plantilla <strong>Kotlin Multiplatform</strong>, el plugin no quedó instalado o falta reiniciar el IDE — no continúes al siguiente paso hasta verlo aparecer.</p>
+<h3 id="32-macos-instalar-y-preparar-xcode">3.2 (macOS) Instalar y preparar Xcode</h3>
+<p><strong>Producto del paso:</strong> Xcode instalado, abierto al menos una vez y listo para compilar el target iOS.</p>
+<p>Este paso aplica solo si tienes una Mac. Si no la tienes, continúa con Android en el resto de la sesión y documenta esta limitación en la plantilla de evidencia (4.1.4) — no bloquea el resto del curso.</p>
+<ol>
+<li>Instala Xcode desde la Mac App Store.</li>
+<li>Ábrelo al menos una vez, acepta el acuerdo de licencia y espera a que termine de instalar sus componentes adicionales (herramientas de línea de comandos, plataformas de simulador).</li>
+<li>Verifica la instalación desde la Terminal:</li>
+</ol>
+<pre><code class="language-bash">xcodebuild -version
+xcrun simctl list devicetypes | grep iPhone
+</code></pre>
+<p>La primera confirma la versión de Xcode instalada; la segunda confirma que hay al menos un tipo de dispositivo iPhone disponible para el simulador.</p>
+<h3 id="33-crear-el-proyecto-kmp-base-con-el-asistente-oficial">3.3 Crear el proyecto KMP base con el asistente oficial</h3>
+<p><strong>Producto del paso:</strong> proyecto KMP base generado y abierto en Android Studio.</p>
+<p>Puedes usar cualquiera de las dos vías descritas en 2.5; se recomienda la integrada en Android Studio porque abre el proyecto directamente al terminar:</p>
+<ol>
+<li><strong>File → New → New Project.</strong></li>
+<li>Selecciona la plantilla <strong>Kotlin Multiplatform</strong> (aparece en la categoría de plantillas junto a "Phone and Tablet" una vez instalado el plugin de 3.1).</li>
+<li>Completa los campos del asistente:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Valor para el proyecto del curso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Project name</td>
+<td>El nombre de tu proyecto, definido por el equipo en el Proyecto Sello (por ejemplo, el dominio elegido).</td>
+</tr>
+<tr>
+<td>Package name / Project ID</td>
+<td><code>pe.edu.upeu.&lt;nombre-corto-del-proyecto&gt;</code>, todo en minúsculas, sin espacios.</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>Una carpeta dedicada fuera de cualquier repositorio de otro curso.</td>
+</tr>
+<tr>
+<td>Platforms</td>
+<td>Android e iOS como mínimo (agrega Desktop solo si tu equipo quiere probarlo también, no es requisito del sílabo).</td>
+</tr>
+<tr>
+<td>Compartir UI</td>
+<td>Deja seleccionada la opción de compartir UI con <strong>Compose Multiplatform</strong> (no elijas "Do not share UI" / UI nativa).</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Haz clic en <strong>Finish</strong> y espera a que Android Studio termine de sincronizar Gradle (la primera sincronización descarga dependencias y puede tardar varios minutos).</li>
+</ol>
+<p>Si el asistente falla o prefieres generarlo primero fuera del IDE, usa <code>kmp.jetbrains.com</code>: completa los mismos campos, descarga el <code>.zip</code>, descomprímelo y ábrelo desde Android Studio con <strong>File → Open</strong>.</p>
+<h3 id="34-reconocer-la-estructura-del-proyecto-generado">3.4 Reconocer la estructura del proyecto generado</h3>
+<p><strong>Producto del paso:</strong> mapa del proyecto generado, con cada carpeta identificada.</p>
+<p>Abre el panel de proyecto (vista "Project" o "Android", según prefieras) y localiza:</p>
+<pre><code class="language-text">&lt;tu-proyecto&gt;/
+├── shared/ (o composeApp/)
+│   └── src/
+│       ├── commonMain/kotlin/...
+│       ├── androidMain/kotlin/...
+│       └── iosMain/kotlin/...
+├── androidApp/
+├── iosApp/
+├── gradle/
+├── gradlew
+├── gradlew.bat
+└── settings.gradle.kts
+</code></pre>
+<p>Responde por escrito (queda como parte de tu evidencia técnica, 4.1.3):</p>
+<ol>
+<li>¿Qué archivo <code>.kt</code> de <code>commonMain</code> genera el asistente por defecto? Ábrelo y describe en una línea qué hace.</li>
+<li>¿Qué diferencia encuentras entre el contenido de <code>androidMain</code> y el de <code>iosMain</code>?</li>
+<li>¿Dónde está el archivo que declara las plataformas del proyecto (<code>Android</code>, <code>iOS</code>, etc.) y las dependencias de Compose Multiplatform?</li>
+</ol>
+<h3 id="35-ejecutar-el-proyecto-en-un-emulador-android">3.5 Ejecutar el proyecto en un emulador Android</h3>
+<p><strong>Producto del paso:</strong> proyecto corriendo en un emulador Android, sin errores de compilación.</p>
+<ol>
+<li>Si no tienes un dispositivo virtual, créalo desde <strong>Device Manager</strong> (ícono de celular en la barra lateral) → <strong>Create Device</strong> → elige un perfil de teléfono reciente y una imagen de sistema con Google APIs.</li>
+<li>En la barra de configuraciones de ejecución, selecciona la configuración de la app Android (por ejemplo <code>androidApp</code>) y el emulador creado.</li>
+<li>Haz clic en <strong>Run</strong> (▶).</li>
+</ol>
+<p>Alternativa por línea de comandos, desde la raíz del proyecto (requiere un emulador o dispositivo ya conectado):</p>
+<pre><code class="language-powershell"># Windows
+.\gradlew.bat :androidApp:installDebug
+</code></pre>
+<pre><code class="language-bash"># macOS / Linux
+./gradlew :androidApp:installDebug
+</code></pre>
+<p>El proyecto trae el <strong>Gradle Wrapper</strong> (<code>gradlew</code>/<code>gradlew.bat</code>): no necesitas instalar Gradle aparte, solo un JDK compatible (el que trae embebido Android Studio es suficiente). Ejecuta siempre el wrapper, nunca un <code>gradle</code> instalado aparte, para que todo el equipo use la misma versión.</p>
+<p>La app generada por la plantilla no tiene UI propia del curso todavía: muestra una pantalla mínima de ejemplo del asistente. Verlo ejecutar sin errores es el objetivo de este paso — el contenido real llega en S2-S5.</p>
+<h3 id="36-macos-ejecutar-el-proyecto-en-el-simulador-de-ios">3.6 (macOS) Ejecutar el proyecto en el simulador de iOS</h3>
+<p><strong>Producto del paso:</strong> proyecto corriendo en el simulador de iOS.</p>
+<p>Aplica solo si completaste 3.2. Dos formas equivalentes:</p>
+<p><strong>Desde Android Studio:</strong> selecciona la configuración de ejecución del target iOS (por ejemplo <code>iosApp</code>) y un simulador de la lista, luego <strong>Run</strong>. El IDE compila el framework compartido con Kotlin/Native y usa Xcode "por debajo" para levantar el simulador.</p>
+<p><strong>Desde Xcode directamente:</strong> abre el proyecto/workspace dentro de la carpeta <code>iosApp/</code> con Xcode, selecciona un simulador de iPhone en la barra superior y presiona el botón de ejecutar (▶).</p>
+<p>Si la compilación falla con un error sobre herramientas de línea de comandos o licencias, vuelve a 3.2 — casi siempre significa que Xcode no se abrió y configuró al menos una vez antes de este paso.</p>
+<h3 id="37-configurar-git-y-el-primer-commit">3.7 Configurar Git y el primer commit</h3>
+<p><strong>Producto del paso:</strong> repositorio Git local inicializado, con <code>.gitignore</code> correcto y primer commit.</p>
+<p>Desde la raíz del proyecto:</p>
+<pre><code class="language-bash">git init
+</code></pre>
+<p>Crea (o revisa, si el asistente ya lo generó) un <code>.gitignore</code> que incluya al menos:</p>
+<pre><code class="language-text"># Gradle / Android Studio
+.gradle/
+build/
+*/build/
+local.properties
+.idea/
+*.iml
+
+# Xcode (si el equipo también trabaja con el proyecto iOS en Xcode)
+iosApp/**/DerivedData/
+iosApp/**/xcuserdata/
+</code></pre>
+<p>Luego el primer commit:</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;Proyecto KMP base generado con el asistente oficial&quot;
+</code></pre>
+<p>Verifica que <code>local.properties</code> y las carpetas <code>build/</code> <strong>no</strong> quedaron incluidas en el commit:</p>
+<pre><code class="language-bash">git show --stat HEAD
+</code></pre>
+<h3 id="38-publicar-el-repositorio-en-github-con-los-topics-academicos">3.8 Publicar el repositorio en GitHub con los topics académicos</h3>
+<p><strong>Producto del paso:</strong> repositorio remoto en GitHub, con topics académicos y el primer commit sincronizado.</p>
+<ol>
+<li>Crea el repositorio vacío en GitHub (sin <code>README</code> ni <code>.gitignore</code> generados automáticamente, para no chocar con lo que ya tienes local).</li>
+<li>Conéctalo y sube el primer commit:</li>
+</ol>
+<pre><code class="language-bash">git remote add origin https://github.com/&lt;org-o-usuario&gt;/&lt;nombre-del-repo&gt;.git
+git branch -M main
+git push -u origin main
+</code></pre>
+<ol>
+<li>Agrega los topics académicos mínimos del estándar del curso (ver <a href="../../proyecto-sello/#repositorio-académico-y-topics">Guía del Proyecto Sello, sección 5</a>):</li>
+</ol>
+<pre><code class="language-text">campus-&lt;tu-campus&gt;
+semestre-2026-2
+linea-software
+tipo-ps
+mov
+seccion-&lt;tu-sección&gt;
+grupo-&lt;numero&gt;-&lt;nombre-proyecto&gt;
+</code></pre>
+<h2 id="4-crea-actividad-autonoma">4. Crea: actividad autónoma</h2>
+<p>Tiempo: 2h fuera del aula.</p>
+<p>Actividad autónoma indicada por el sílabo: <strong>documenta el entorno, los comandos de ejecución y la estructura del proyecto.</strong></p>
+<h3 id="41-plantilla-de-evidencia-individual">4.1 Plantilla de evidencia individual</h3>
+<p>Entrega un PDF con el siguiente nombre:</p>
+<pre><code class="language-text">S01_MOV_Equipo##_ApellidoNombre.pdf
+</code></pre>
+<h4 id="411-datos-del-estudiante">4.1.1 Datos del estudiante</h4>
+<ul>
+<li>Nombre:</li>
+<li>Equipo:</li>
+<li>Sesión: S01 - Fundamentos de Kotlin Multiplatform: Arquitectura, Entorno y Proyecto Base</li>
+<li>Rol o aporte realizado:</li>
+<li>Link del repositorio:</li>
+</ul>
+<h4 id="412-trabajo-autonomo-realizado">4.1.2 Trabajo autónomo realizado</h4>
+<p>Completa y evidencia estas tareas:</p>
+<ol>
+<li>Documentar las versiones instaladas (Android Studio, plugin de Kotlin Multiplatform, Kotlin, y Xcode si aplica).</li>
+<li>Documentar los comandos usados para ejecutar el proyecto en Android (y en iOS si aplica).</li>
+<li>Documentar la estructura de carpetas del proyecto generado, identificando <code>commonMain</code>, <code>androidMain</code> e <code>iosMain</code>.</li>
+<li>Evidenciar el primer commit y el repositorio publicado en GitHub con sus topics.</li>
+</ol>
+<h4 id="413-evidencia-tecnica">4.1.3 Evidencia técnica</h4>
+<p>Incluye capturas o extractos con una breve explicación debajo de cada uno:</p>
+<ul>
+<li>Versiones verificadas del entorno (equivalente a 3.1-3.2).</li>
+<li>Proyecto ejecutándose en el emulador Android (y en el simulador iOS si aplica), equivalente a 3.5-3.6.</li>
+<li>Estructura del proyecto y respuestas de 3.4.</li>
+<li>Primer commit y repositorio en GitHub con topics visibles, equivalente a 3.7-3.8.</li>
+</ul>
+<h4 id="414-error-o-hallazgo">4.1.4 Error o hallazgo</h4>
+<p>Describe un error o hallazgo real de la instalación o creación del proyecto: una versión incompatible, un paso del asistente que no coincidió con esta guía, un error de compilación al primer intento, o la limitación de no contar con una Mac para el target iOS.</p>
+<h4 id="415-reflexion-tecnica-breve">4.1.5 Reflexión técnica breve</h4>
+<p>Responde en 5 a 8 líneas:</p>
+<pre><code class="language-text">¿Qué parte de tu proyecto crees que se beneficiará más de compartir código
+entre Android e iOS, y qué parte crees que seguirá necesitando código
+específico por plataforma? Justifica con lo que viste en 2.2.
+</code></pre>
+<h3 id="42-criterios-minimos-de-aceptacion">4.2 Criterios mínimos de aceptación</h3>
+<p>La evidencia individual se considera completa si:</p>
+<ul>
+<li>El archivo respeta el nombre solicitado.</li>
+<li>Documenta versiones reales del entorno instalado, no genéricas.</li>
+<li>El proyecto compila y se ejecuta al menos en Android.</li>
+<li>Identifica correctamente <code>commonMain</code>, <code>androidMain</code> e <code>iosMain</code> en la estructura del proyecto generado.</li>
+<li>El repositorio existe en GitHub, con el primer commit y los topics académicos mínimos.</li>
+<li>Incluye un error o hallazgo real y una reflexión técnica propia.</li>
+</ul>
+<h2 id="5-cierre-evaluativo">5. Cierre evaluativo</h2>
+<p>Tiempo: 20 min.</p>
+<h3 id="51-resultados-esperados">5.1 Resultados esperados</h3>
+<p>Al finalizar la sesión, el estudiante debe demostrar que:</p>
+<ul>
+<li>Explica qué problema resuelve Kotlin Multiplatform frente a mantener dos apps nativas separadas.</li>
+<li>Reconoce la arquitectura <code>commonMain</code>/<code>androidMain</code>/<code>iosMain</code> de un proyecto KMP.</li>
+<li>Configura Android Studio con el plugin de Kotlin Multiplatform (y Xcode, si tiene Mac).</li>
+<li>Crea un proyecto KMP base con el asistente oficial y lo ejecuta en un emulador Android.</li>
+<li>Versiona el proyecto en Git y lo publica en GitHub con los topics académicos del curso.</li>
+</ul>
+<h3 id="52-evidencia-del-producto-de-sesion">5.2 Evidencia del producto de sesión</h3>
+<p>Cada estudiante entrega un PDF individual siguiendo la plantilla de la sección 4.1.</p>
+<p>Nombre del archivo:</p>
+<pre><code class="language-text">S01_MOV_Equipo##_ApellidoNombre.pdf
+</code></pre>
+<h3 id="53-preguntas-de-defensa-y-reflexion">5.3 Preguntas de defensa y reflexión</h3>
+<ol>
+<li>¿Qué diferencia hay entre compartir solo lógica de negocio y compartir también la UI con Compose Multiplatform?</li>
+<li>¿Qué contiene <code>commonMain</code> y qué contienen <code>androidMain</code>/<code>iosMain</code>?</li>
+<li>¿Por qué el target iOS solo puede compilarse desde una Mac con Xcode?</li>
+<li>¿Qué evita que <code>local.properties</code> se versione en Git?</li>
+<li>¿Qué pasaría si el equipo escribiera código específico de Android directamente dentro de <code>commonMain</code>?</li>
+<li>¿Qué relación tiene Compose Multiplatform con Jetpack Compose?</li>
+</ol>
+<h3 id="54-rubrica-de-evaluacion">5.4 Rúbrica de evaluación</h3>
+<table>
+<thead>
+<tr>
+<th>Dimensión</th>
+<th style="text-align: right;">Peso</th>
+<th>3 - Logro destacado</th>
+<th>2 - Logro</th>
+<th>1 - Proceso</th>
+<th>0 - Inicio</th>
+<th style="text-align: right;">Puntuación obtenida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Comprensión de la arquitectura KMP</td>
+<td style="text-align: right;">2</td>
+<td>Explica con precisión <code>commonMain</code>/<code>androidMain</code>/<code>iosMain</code> y el problema que resuelve KMP.</td>
+<td>Explica la arquitectura de forma correcta.</td>
+<td>Explicación parcial o imprecisa.</td>
+<td>No explica la arquitectura.</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>2. Configuración del entorno</td>
+<td style="text-align: right;">2</td>
+<td>Android Studio, plugin de Kotlin Multiplatform (y Xcode si aplica) correctamente instalados y verificados con evidencia real.</td>
+<td>Entorno configurado con detalles menores.</td>
+<td>Configuración incompleta o sin verificar.</td>
+<td>El entorno no está configurado.</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>3. Creación y ejecución del proyecto</td>
+<td style="text-align: right;">2</td>
+<td>Proyecto creado con el asistente oficial y ejecutándose sin errores en Android (e iOS si aplica).</td>
+<td>Proyecto ejecutándose con detalles menores.</td>
+<td>Ejecución parcial o con errores no resueltos.</td>
+<td>El proyecto no ejecuta.</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>4. Estructura del proyecto y Git</td>
+<td style="text-align: right;">2</td>
+<td>Estructura identificada con precisión; repositorio con <code>.gitignore</code> correcto, primer commit y topics académicos.</td>
+<td>Estructura y repositorio correctos con detalles menores.</td>
+<td>Estructura o repositorio incompletos.</td>
+<td>No identifica la estructura ni versiona el proyecto.</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>5. Documentación del entorno y comandos</td>
+<td style="text-align: right;">1</td>
+<td>Documentación completa, reproducible por otra persona.</td>
+<td>Documentación suficiente.</td>
+<td>Documentación incompleta o poco clara.</td>
+<td>No documenta el entorno ni los comandos.</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>6. Orden y reflexión</td>
+<td style="text-align: right;">1</td>
+<td>Evidencia ordenada y reflexión técnica clara.</td>
+<td>Evidencia suficiente y reflexión comprensible.</td>
+<td>Evidencia incompleta o reflexión superficial.</td>
+<td>Evidencia desordenada o sin reflexión.</td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+<p>Puntuación acumulada = suma de (<code>Peso</code> * <code>Puntuación obtenida</code>) = ____.</p>
+<p>Nota final = (<code>Puntuación acumulada</code> / 30) * 20 = ____.</p>
+<p>Para usar la rúbrica con IA, solicita:</p>
+<pre><code class="language-text">Evalúa el PDF usando la rúbrica de la sesión.
+Para cada dimensión selecciona la puntuación obtenida usando la escala Inicio=0, Proceso=1, Logro=2, Logro destacado=3.
+Justifica brevemente cada puntuación.
+Calcula la puntuación acumulada con la fórmula: suma de (Peso * Puntuación obtenida).
+Calcula la nota final sobre 20 con la fórmula: (Puntuación acumulada / 30) * 20.
+Indica 2 fortalezas y 2 recomendaciones.
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
