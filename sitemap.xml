@@ -2,22 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://262mov.github.io/pagatu-mov/</loc>
-         <lastmod>2026-08-10</lastmod>
+         <lastmod>2026-08-18</lastmod>
     </url>
     <url>
          <loc>https://262mov.github.io/pagatu-mov/silabo_mov_2026_1/</loc>
-         <lastmod>2026-08-10</lastmod>
+         <lastmod>2026-08-18</lastmod>
     </url>
     <url>
          <loc>https://262mov.github.io/pagatu-mov/silabo_mov_2026_2/</loc>
-         <lastmod>2026-08-10</lastmod>
+         <lastmod>2026-08-18</lastmod>
     </url>
     <url>
          <loc>https://262mov.github.io/pagatu-mov/proyecto-sello/</loc>
-         <lastmod>2026-08-10</lastmod>
+         <lastmod>2026-08-18</lastmod>
     </url>
     <url>
          <loc>https://262mov.github.io/pagatu-mov/sesiones/S01_Fundamentos_KMP_Compose/</loc>
-         <lastmod>2026-08-10</lastmod>
+         <lastmod>2026-08-18</lastmod>
+    </url>
+    <url>
+         <loc>https://262mov.github.io/pagatu-mov/sesiones/S02_Kotlin_Esencial_Dominio_CommonMain/</loc>
+         <lastmod>2026-08-18</lastmod>
     </url>
 </urlset>
