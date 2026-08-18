@@ -4,9 +4,9 @@
 
 Tiempo: 20 min.
 
-### 1.1 Contexto
+### 1.1 Presentación de la sesión
 
-Antes de escribir la primera pantalla de una aplicación móvil multiplataforma hay que resolver una pregunta previa: ¿cómo se comparte código entre Android e iOS sin duplicar la lógica de negocio en dos lenguajes distintos? Kotlin Multiplatform (KMP) responde esa pregunta compilando el mismo código Kotlin hacia binarios nativos para cada plataforma. Esta sesión no escribe todavía ninguna pantalla: instala y verifica el entorno (Android Studio, el plugin de Kotlin Multiplatform y, si corresponde, Xcode), crea el proyecto KMP base mediante el asistente oficial y lo versiona en Git. Es el punto de partida de todo lo que el equipo construirá durante el semestre.
+Esta sesión abre la Unidad 1: instala y verifica el entorno de desarrollo multiplataforma (Android Studio, el plugin de Kotlin Multiplatform y, si corresponde, Xcode), crea el proyecto KMP base mediante el asistente oficial y lo versiona en Git. Todavía no se escribe ninguna pantalla propia — es el punto de partida de todo lo que el equipo construirá durante el semestre. El porqué de compartir código entre Android e iOS en vez de mantener dos bases separadas se desarrolla en 1.6, a partir del caso de la lógica que no debería escribirse dos veces.
 
 ### 1.2 Índice
 
@@ -29,11 +29,13 @@ Proyecto KMP base creado con el asistente oficial de Kotlin Multiplatform, ejecu
 
 ### 1.5 Metodología
 
-| Fase | Actividades | Orientaciones | Material |
-|---|---|---|---|
-| Revisión previa individual | Descargar Android Studio (instalador pesado, conviene iniciarlo antes de clase) y leer las secciones 1 y 2 de esta guía. | Trabajo individual, antes de clase; no se requiere tener el entorno funcionando todavía, solo la descarga iniciada. | Enlace oficial de descarga de Android Studio, esta guía. |
-| Clase presencial | Instalación guiada del plugin de Kotlin Multiplatform, explicación de la arquitectura KMP y creación del proyecto base con el asistente oficial; primera ejecución en el emulador Android. | Trabajo individual en la propia laptop, siguiendo al docente paso a paso; consulta inmediata ante errores de instalación, SDK o emulador. | Android Studio con el plugin de Kotlin Multiplatform instalado, asistente de `kmp.jetbrains.com` o el wizard integrado, emulador Android configurado. |
-| Evaluación formativa | Verificación en clase de la ejecución del proyecto y del primer commit en Git; inicio de la plantilla de evidencia individual. | La evidencia se completa y sustenta de forma individual, fuera del aula, según los criterios mínimos de la sección 4.2. | Plantilla de evidencia individual (4.1), rúbrica de evaluación (5.4). |
+**Tabla 1. Metodología de la sesión**
+
+| Actividades a Realizar en el Periodo | Orientaciones generales (Orientaciones Metodológicas) | Material de estudio recomendado |
+|---|---|---|
+| Revisión previa individual | Descargar Android Studio (instalador pesado, conviene iniciarlo antes de clase) y leer las secciones 1 y 2 de esta guía. Trabajo individual, antes de clase; no se requiere tener el entorno funcionando todavía, solo la descarga iniciada. | Enlace oficial de descarga de Android Studio, esta guía. |
+| Clase presencial | Instalación guiada del plugin de Kotlin Multiplatform, explicación de la arquitectura KMP y creación del proyecto base con el asistente oficial; primera ejecución en el emulador Android. Trabajo individual en la propia laptop, siguiendo al docente paso a paso; consulta inmediata ante errores de instalación, SDK o emulador. | Android Studio con el plugin de Kotlin Multiplatform instalado, asistente de `kmp.jetbrains.com` o el wizard integrado, emulador Android configurado. |
+| Evaluación formativa | Verificación en clase de la ejecución del proyecto y del primer commit en Git; inicio de la plantilla de evidencia individual. La evidencia se completa y sustenta de forma individual, fuera del aula, según los criterios mínimos de la sección 4.2. | Plantilla de evidencia individual (4.1), rúbrica de evaluación (5.4). |
 
 ### 1.6 Motivación de la sesión
 
@@ -46,11 +48,16 @@ Un equipo construye "PagaTú", una app de pagos entre amigos. En la primera vers
 pantalla, que Android e iOS comparten la misma lógica de negocio en Kotlin?
 ```
 
-Preguntas para los estudiantes:
+**Preguntas de análisis**
+
+**Activación de conocimientos previos**
 
 1. ¿Qué se duplicaría exactamente si el equipo construye la lógica de negocio dos veces (una en Kotlin para Android y otra en Swift para iOS)?
-2. ¿Qué parte del proyecto sigue siendo distinta entre Android e iOS aunque se use Kotlin Multiplatform?
-3. ¿Por qué conviene decidir la arquitectura multiplataforma antes de escribir la primera pantalla, y no después de tener ya una app nativa funcionando?
+2. ¿Por qué conviene decidir la arquitectura multiplataforma antes de escribir la primera pantalla, y no después de tener ya una app nativa funcionando?
+
+**Comprensión de la arquitectura multiplataforma**
+
+1. ¿Qué parte del proyecto sigue siendo distinta entre Android e iOS aunque se use Kotlin Multiplatform?
 
 ### 1.7 Ubicación en el curso
 
@@ -60,6 +67,8 @@ Preguntas para los estudiantes:
 - Avance del producto en esta sesión: entorno multiplataforma configurado y proyecto KMP base creado, ejecutable y versionado en Git. Todavía no hay dominio modelado, UI propia, navegación ni arquitectura Clean + MVVM — eso empieza en S2 y se construye progresivamente hasta el cierre de la unidad en S6.
 
 Roadmap del producto de la unidad:
+
+**Figura 1. Roadmap del producto de la Unidad 1 (S1-S6)**
 
 ```mermaid
 flowchart TB
@@ -93,6 +102,8 @@ Esto distingue a KMP de frameworks que abstraen la UI por completo sin exponer l
 ### 2.2 Arquitectura de un proyecto Kotlin Multiplatform
 
 Un proyecto KMP organiza el código en **conjuntos de fuentes** (*source sets*) según cuánto código comparten:
+
+**Figura 2. Source sets de un proyecto Kotlin Multiplatform: commonMain, androidMain e iosMain**
 
 ```mermaid
 flowchart TB
@@ -131,6 +142,8 @@ En S1 el asistente de creación de proyecto ya deja Compose Multiplatform config
 ### 2.4 Entorno de desarrollo: Android Studio, plugin de Kotlin Multiplatform y Xcode
 
 Desarrollar con KMP en este curso requiere, como mínimo:
+
+**Tabla 2. Componentes del entorno de desarrollo requeridos para KMP**
 
 | Componente | Para qué sirve | Obligatorio para |
 |---|---|---|
@@ -184,7 +197,20 @@ El repositorio del proyecto del curso se crea siguiendo el mismo estándar de to
 
 Tiempo: 2h.
 
-Hoja de ruta de la sesión práctica:
+**Actividad:** instalación del entorno multiplataforma y creación del proyecto KMP base.
+
+**Propósito de la actividad:** configurar un entorno de desarrollo Kotlin Multiplatform funcional, y generar, ejecutar y versionar en Git el proyecto base sobre el que se construirá la app durante el semestre.
+
+**Orientaciones metodológicas:** el docente guía la instalación del plugin de Kotlin Multiplatform y la creación del proyecto con el asistente oficial, paso a paso frente a la clase; los estudiantes replican cada paso en su propia laptop, verificando la ejecución en el emulador Android (y en el simulador de iOS quienes tengan Mac) antes de versionar el proyecto en Git.
+
+```text
+En S1 solo se instala el entorno, se crea el proyecto KMP base con el
+asistente oficial y se deja versionado en Git. No se escribe UI propia,
+no se modela el dominio y no se aplica arquitectura Clean+MVVM todavía
+— eso se construye progresivamente entre S2 y S5.
+```
+
+**Actividades para realizar:**
 
 - **3.1** Instalar y verificar Android Studio y el plugin de Kotlin Multiplatform.
 - **3.2** (macOS) Instalar y preparar Xcode.
@@ -194,13 +220,6 @@ Hoja de ruta de la sesión práctica:
 - **3.6** (macOS) Ejecutar el proyecto en el simulador de iOS.
 - **3.7** Configurar Git y el primer commit.
 - **3.8** Publicar el repositorio en GitHub con los topics académicos.
-
-```text
-En S1 solo se instala el entorno, se crea el proyecto KMP base con el
-asistente oficial y se deja versionado en Git. No se escribe UI propia,
-no se modela el dominio y no se aplica arquitectura Clean+MVVM todavía
-— eso se construye progresivamente entre S2 y S5.
-```
 
 ### 3.1 Instalar y verificar Android Studio y el plugin de Kotlin Multiplatform
 
@@ -253,6 +272,8 @@ Puedes usar cualquiera de las dos vías descritas en 2.5; se recomienda la integ
 1. **File → New → New Project.**
 2. Selecciona la plantilla **Kotlin Multiplatform** (aparece en la categoría de plantillas junto a "Phone and Tablet" una vez instalado el plugin de 3.1).
 3. Completa los campos del asistente:
+
+**Tabla 3. Campos del asistente de creación de proyecto KMP**
 
 | Campo | Valor para el proyecto del curso |
 |---|---|
@@ -397,25 +418,9 @@ grupo-<numero>-<nombre-proyecto>
 
 Tiempo: 2h fuera del aula.
 
-Actividad autónoma indicada por el sílabo: **documenta el entorno, los comandos de ejecución y la estructura del proyecto.**
+### 4.1 Actividad
 
-### 4.1 Plantilla de evidencia individual
-
-Entrega un PDF con el siguiente nombre:
-
-```text
-S01_MOV_Equipo##_ApellidoNombre.pdf
-```
-
-#### 4.1.1 Datos del estudiante
-
-- Nombre:
-- Equipo:
-- Sesión: S01 - Fundamentos de Kotlin Multiplatform: Arquitectura, Entorno y Proyecto Base
-- Rol o aporte realizado:
-- Link del repositorio:
-
-#### 4.1.2 Trabajo autónomo realizado
+Documenta, de forma individual, el entorno multiplataforma configurado y el proyecto KMP base creado en la sesión (ver 1.4): versiones instaladas, comandos de ejecución, estructura de módulos y el primer commit publicado en GitHub.
 
 Completa y evidencia estas tareas:
 
@@ -424,20 +429,53 @@ Completa y evidencia estas tareas:
 3. Documentar la estructura de carpetas del proyecto generado, identificando `commonMain`, `androidMain` e `iosMain`.
 4. Evidenciar el primer commit y el repositorio publicado en GitHub con sus topics.
 
-#### 4.1.3 Evidencia técnica
+### 4.2 Propósito
 
-Incluye capturas o extractos con una breve explicación debajo de cada uno:
+Que cada estudiante demuestre, de forma individual y fuera del aula, que puede reproducir el patrón construido en clase sin el acompañamiento del docente.
 
-- Versiones verificadas del entorno (equivalente a 3.1-3.2).
-- Proyecto ejecutándose en el emulador Android (y en el simulador iOS si aplica), equivalente a 3.5-3.6.
-- Estructura del proyecto y respuestas de 3.4.
-- Primer commit y repositorio en GitHub con topics visibles, equivalente a 3.7-3.8.
+En esta sesión eso significa dejar documentado, con evidencia propia, que el entorno multiplataforma y el proyecto KMP base quedaron correctamente instalados, ejecutados y versionados en su propia máquina.
 
-#### 4.1.4 Error o hallazgo
+### 4.3 Indicaciones
+
+Entrega un PDF con el siguiente nombre:
+
+```text
+S01_MOV_Equipo##_ApellidoNombre.pdf
+```
+
+Cada captura de pantalla del informe debe mostrar, sin recortar, el reloj del sistema (fecha y hora) y tu usuario o foto de perfil (Windows, VS Code o navegador) visibles en pantalla — es lo que permite verificar que la evidencia es tuya y que corresponde al momento real de tu trabajo.
+
+#### 4.3.1 Estructura del informe
+
+**Datos del estudiante**
+
+- Nombre:
+- Equipo:
+- Sesión: S01 - Fundamentos de Kotlin Multiplatform: Arquitectura, Entorno y Proyecto Base
+- Rol o aporte realizado:
+- Link de GitHub:
+
+**Evidencia técnica**
+
+Incluye capturas o extractos con una breve explicación debajo de cada uno, organizados en los mismos 5 bloques de la rúbrica (4.6):
+
+1. *Comprensión de la arquitectura KMP*
+    - Respuestas escritas de 3.4: archivo `.kt` generado por defecto en `commonMain`, diferencias entre `androidMain` e `iosMain`, y ubicación de las dependencias de Compose Multiplatform.
+2. *Configuración del entorno*
+    - Versiones verificadas del entorno (equivalente a 3.1-3.2): Android Studio, plugin de Kotlin Multiplatform, Kotlin y, si aplica, Xcode.
+3. *Creación y ejecución del proyecto*
+    - Proyecto ejecutándose en el emulador Android (y en el simulador de iOS si aplica), equivalente a 3.5-3.6.
+4. *Estructura del proyecto y Git*
+    - Estructura de carpetas del proyecto generado, con `commonMain`, `androidMain` e `iosMain` identificados.
+    - Primer commit y repositorio en GitHub con topics visibles, equivalente a 3.7-3.8.
+5. *Documentación del entorno y comandos*
+    - Comandos usados para ejecutar el proyecto en Android (y en iOS si aplica), documentados de forma reproducible por otra persona.
+
+**Error o hallazgo**
 
 Describe un error o hallazgo real de la instalación o creación del proyecto: una versión incompatible, un paso del asistente que no coincidió con esta guía, un error de compilación al primer intento, o la limitación de no contar con una Mac para el target iOS.
 
-#### 4.1.5 Reflexión técnica breve
+**Reflexión técnica breve**
 
 Responde en 5 a 8 líneas:
 
@@ -447,7 +485,7 @@ entre Android e iOS, y qué parte crees que seguirá necesitando código
 específico por plataforma? Justifica con lo que viste en 2.2.
 ```
 
-### 4.2 Criterios mínimos de aceptación
+### 4.4 Criterios mínimos de aceptación
 
 La evidencia individual se considera completa si:
 
@@ -456,33 +494,13 @@ La evidencia individual se considera completa si:
 - El proyecto compila y se ejecuta al menos en Android.
 - Identifica correctamente `commonMain`, `androidMain` e `iosMain` en la estructura del proyecto generado.
 - El repositorio existe en GitHub, con el primer commit y los topics académicos mínimos.
-- Incluye un error o hallazgo real y una reflexión técnica propia.
+- La evidencia está ordenada y sigue la estructura solicitada en 4.3.1.
+- Cada captura de la evidencia técnica muestra el reloj del sistema y el usuario/perfil visible, sin recortar.
+- Las fechas y horas de las capturas son coherentes con el historial de commits de su repositorio en GitHub.
+- Incluye un error o hallazgo técnico diagnosticado.
+- Incluye la reflexión técnica breve solicitada.
 
-## 5. Cierre evaluativo
-
-Tiempo: 20 min.
-
-### 5.1 Resultados esperados
-
-Al finalizar la sesión, el estudiante debe demostrar que:
-
-- Explica qué problema resuelve Kotlin Multiplatform frente a mantener dos apps nativas separadas.
-- Reconoce la arquitectura `commonMain`/`androidMain`/`iosMain` de un proyecto KMP.
-- Configura Android Studio con el plugin de Kotlin Multiplatform (y Xcode, si tiene Mac).
-- Crea un proyecto KMP base con el asistente oficial y lo ejecuta en un emulador Android.
-- Versiona el proyecto en Git y lo publica en GitHub con los topics académicos del curso.
-
-### 5.2 Evidencia del producto de sesión
-
-Cada estudiante entrega un PDF individual siguiendo la plantilla de la sección 4.1.
-
-Nombre del archivo:
-
-```text
-S01_MOV_Equipo##_ApellidoNombre.pdf
-```
-
-### 5.3 Preguntas de defensa y reflexión
+### 4.5 Preguntas de defensa
 
 1. ¿Qué diferencia hay entre compartir solo lógica de negocio y compartir también la UI con Compose Multiplatform?
 2. ¿Qué contiene `commonMain` y qué contienen `androidMain`/`iosMain`?
@@ -491,28 +509,49 @@ S01_MOV_Equipo##_ApellidoNombre.pdf
 5. ¿Qué pasaría si el equipo escribiera código específico de Android directamente dentro de `commonMain`?
 6. ¿Qué relación tiene Compose Multiplatform con Jetpack Compose?
 
-### 5.4 Rúbrica de evaluación
+### 4.6 Rúbrica de evaluación
 
-| Dimensión | Peso | 3 - Logro destacado | 2 - Logro | 1 - Proceso | 0 - Inicio | Puntuación obtenida |
+**Tabla 4. Rúbrica de evaluación**
+
+| Criterio | Peso (%) | A (20 pts) | B (15 pts) | C (10 pts) | D (5 pts) | Nivel obtenido |
 |---|---:|---|---|---|---|---:|
-| 1. Comprensión de la arquitectura KMP | 2 | Explica con precisión `commonMain`/`androidMain`/`iosMain` y el problema que resuelve KMP. | Explica la arquitectura de forma correcta. | Explicación parcial o imprecisa. | No explica la arquitectura. | |
-| 2. Configuración del entorno | 2 | Android Studio, plugin de Kotlin Multiplatform (y Xcode si aplica) correctamente instalados y verificados con evidencia real. | Entorno configurado con detalles menores. | Configuración incompleta o sin verificar. | El entorno no está configurado. | |
-| 3. Creación y ejecución del proyecto | 2 | Proyecto creado con el asistente oficial y ejecutándose sin errores en Android (e iOS si aplica). | Proyecto ejecutándose con detalles menores. | Ejecución parcial o con errores no resueltos. | El proyecto no ejecuta. | |
-| 4. Estructura del proyecto y Git | 2 | Estructura identificada con precisión; repositorio con `.gitignore` correcto, primer commit y topics académicos. | Estructura y repositorio correctos con detalles menores. | Estructura o repositorio incompletos. | No identifica la estructura ni versiona el proyecto. | |
-| 5. Documentación del entorno y comandos | 1 | Documentación completa, reproducible por otra persona. | Documentación suficiente. | Documentación incompleta o poco clara. | No documenta el entorno ni los comandos. | |
-| 6. Orden y reflexión | 1 | Evidencia ordenada y reflexión técnica clara. | Evidencia suficiente y reflexión comprensible. | Evidencia incompleta o reflexión superficial. | Evidencia desordenada o sin reflexión. | |
+| 1. Comprensión de la arquitectura KMP* | 20 | Explica con precisión `commonMain`/`androidMain`/`iosMain` y el problema que resuelve KMP, con evidencia escrita propia. | Explica la arquitectura de forma correcta, con detalles menores imprecisos. | Explicación parcial o imprecisa de la arquitectura. | No explica la arquitectura o la explicación es incorrecta. | |
+| 2. Configuración del entorno* | 20 | Entorno instalado y verificado con evidencia real (versiones, plugin, Xcode si aplica). | Entorno configurado con detalles menores faltantes. | Configuración incompleta o sin verificar. | El entorno no está configurado o no hay evidencia. | |
+| 3. Creación y ejecución del proyecto* | 20 | Proyecto creado con el asistente oficial y ejecutándose sin errores en Android (e iOS si aplica), con evidencia clara. | Proyecto ejecutándose con detalles menores. | Ejecución parcial o con errores no resueltos. | El proyecto no ejecuta o no hay evidencia. | |
+| 4. Estructura del proyecto y Git* | 20 | Estructura identificada con precisión; repositorio con `.gitignore` correcto, primer commit y topics académicos completos. | Estructura y repositorio correctos con detalles menores. | Estructura o repositorio incompletos. | No identifica la estructura ni versiona el proyecto correctamente. | |
+| 5. Documentación del entorno y comandos* | 20 | Documentación completa y reproducible por otra persona. | Documentación suficiente, con detalles menores. | Documentación incompleta o poco clara. | No documenta el entorno ni los comandos. | |
 
-Puntuación acumulada = suma de (`Peso` * `Puntuación obtenida`) = ____.
+\* Agregado manual.
 
-Nota final = (`Puntuación acumulada` / 30) * 20 = ____.
+Nota final = suma de (`Peso` / 100 × `Puntos del nivel obtenido`) = ____ / 20.
 
 Para usar la rúbrica con IA, solicita:
 
 ```text
 Evalúa el PDF usando la rúbrica de la sesión.
-Para cada dimensión selecciona la puntuación obtenida usando la escala Inicio=0, Proceso=1, Logro=2, Logro destacado=3.
-Justifica brevemente cada puntuación.
-Calcula la puntuación acumulada con la fórmula: suma de (Peso * Puntuación obtenida).
-Calcula la nota final sobre 20 con la fórmula: (Puntuación acumulada / 30) * 20.
+Para cada criterio selecciona el nivel obtenido usando la escala A=20, B=15, C=10, D=5 puntos.
+Justifica brevemente cada nivel asignado.
+Verifica que cada captura muestre reloj del sistema y usuario/perfil visible, y que las fechas sean coherentes con el historial de commits de GitHub. Si falta esta evidencia o hay inconsistencias, indícalo explícitamente antes de calificar.
+Calcula la nota final con la fórmula: suma de (Peso/100 × Puntos del nivel obtenido), directamente sobre 20.
 Indica 2 fortalezas y 2 recomendaciones.
 ```
+
+## 5. Cierre
+
+Tiempo: 5 min.
+
+**Resumen breve:** hoy configuraste el entorno multiplataforma (Android Studio, plugin de Kotlin Multiplatform y, si tienes Mac, Xcode), creaste el proyecto KMP base con el asistente oficial, lo ejecutaste en el emulador Android y lo versionaste en Git, publicándolo en GitHub con los topics académicos del curso.
+
+**Dinámica participativa:** cada estudiante comparte en una frase el error o hallazgo más relevante que tuvo durante la instalación o la creación del proyecto (una versión incompatible, un paso del asistente distinto al de esta guía, o la limitación de no tener Mac).
+
+**Metacognición:** ¿qué parte del entorno o del proyecto te costó más configurar hoy, y qué harías distinto la próxima vez?
+
+**Proyección:** en S2 se construye el modelo de dominio y la lógica de negocio en `commonMain` sobre este mismo proyecto base, con Kotlin esencial, colecciones, corrutinas y Flow — lo que hoy es solo la plantilla generada por el asistente empieza a llenarse con el dominio real del Proyecto Sello.
+
+## Bibliografía
+
+- Google. (s.f.). Android Studio. https://developer.android.com/studio
+- JetBrains. (s.f.). Kotlin Multiplatform. https://kotlinlang.org/docs/multiplatform.html
+- JetBrains. (s.f.). Compose Multiplatform. https://www.jetbrains.com/compose-multiplatform/
+- JetBrains. (s.f.). Kotlin Multiplatform Wizard. https://kmp.jetbrains.com
+- Apple Inc. (s.f.). Xcode. https://developer.apple.com/xcode/

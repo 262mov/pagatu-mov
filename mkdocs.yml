@@ -1,4 +1,4 @@
-site_name: Desarrollo de Aplicaciones Móviles
+site_name: Pagatu Mov
 site_url: https://262mov.github.io/pagatu-mov/
 repo_url: https://github.com/262mov/pagatu-mov
 repo_name: 262mov/pagatu-mov
@@ -13,14 +13,29 @@ nav:
       - Silabo 2026-2: silabo_mov_2026_2.md
   - 1. Fundamentos de Kotlin Multiplatform y UI con Compose Multiplatform:
       - "S1 - Fundamentos de Kotlin Multiplatform: Arquitectura, Entorno y Proyecto Base": sesiones/S01_Fundamentos_KMP_Compose.md
+      - S2 - Kotlin Esencial y Dominio en commonMain: sesiones/S02_Kotlin_Esencial_Dominio_CommonMain.md
 
 theme:
   name: material
+  custom_dir: overrides
   features:
     - navigation.instant
     - navigation.tracking
     - navigation.top
     - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - toc:
+      permalink: true
 
 plugins:
   - search
